@@ -75,6 +75,17 @@ class LIFXController():
             info.append(data[i]['power'])
         return info
 
+    #takes in a light label and return t/f if light is on or off.
+    def getLightPowerState(self,label):
+        data=LIFXController.getJSON(self)
+        for i in range(len(data)):
+            if(data[i]['label']==label):    
+                if(data[i]['power']=='on'):
+                    return True
+                else:
+                    return False
+
+
     def printLightInfoDebug(self):
         data=LIFXController.getJSON(self)
         for i in range(len(data)):

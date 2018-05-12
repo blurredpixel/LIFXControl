@@ -17,17 +17,30 @@ def launchWin(win):
 def debug(button):
     token=app.getEntry("Token:")
     light = LFX.LIFXController(token)
-    print(light.printLightInfoDebug())
-    app.addListBox("labels",light.getLightLabels())
+    
+    if(button=="listbox"):
+        print(light.getLightPowerState(app.getListBox("labels")[0]))
+    if(button=="light_edit"):
+        app.startSubWindow("light_edit",modal=True)
+        app.addRadioButton("power","on")
+        app.addRadioButton("power","off")
+        if(light.getLightPowerState(app.getListBox("labels")[0])==True):
+            app.setRadioButton("power","off",callFunction=False)
+        
+        app.stopSubWindow()
+        app.showSubWindow("light_edit")
+
+    else:
+        app.addListBox("labels",light.getLightLabels())
+        print(light.printLightInfoDebug())
+    
+        
+    
 
 
+app.addButtons(["Connect","listbox"],debug)
+app.addButton("light_edit",debug)
 
-app.addButton("Test",debug)
-app.addButton("light_edit",launchWin)
-app.startSubWindow("light_edit",modal=True)
-app.addRadioButton("power","on")
-app.addRadioButton("power","off")
-app.stopSubWindow()
 
 
 
