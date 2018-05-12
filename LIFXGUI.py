@@ -11,6 +11,8 @@ app=gui("LFX Controller","800x600")
 
 app.addLabelEntry("Token:")
 
+def launchWin(win):
+    app.showSubWindow(win)
 
 def debug(button):
     token=app.getEntry("Token:")
@@ -21,8 +23,11 @@ def debug(button):
 
 
 app.addButton("Test",debug)
-
-
+app.addButton("light_edit",launchWin)
+app.startSubWindow("light_edit",modal=True)
+app.addRadioButton("power","on")
+app.addRadioButton("power","off")
+app.stopSubWindow()
 
 
 
