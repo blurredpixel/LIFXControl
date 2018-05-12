@@ -18,7 +18,23 @@ class LIFXController():
             return headers
         self.response= requests.get('https://api.lifx.com/v1/lights/all', headers=getHeaders(self))
         
-    
+    #toggles power of passed in label and state
+    def togglePower(self,token,label,state):
+        def getHeaders(self):
+            
+
+            headers = {
+                "Authorization": "Bearer %s" % token,
+            }
+
+            return headers
+        payload = {
+            "power": state,
+        }
+        #debug methods
+        print("Label togglePower: "+label)
+        print("Label state togglePower: "+state)
+        self.response= requests.put('https://api.lifx.com/v1/lights/label:'+label+'/state',data=payload, headers=getHeaders(self))
         
 
 
