@@ -36,15 +36,31 @@ class LIFXController():
         print("Label state togglePower: "+state)
         self.response= requests.put('https://api.lifx.com/v1/lights/label:'+label+'/state',data=payload, headers=getHeaders(self))
         
+    def changeBrightness(self,token,label,brightness):
+        def getHeaders(self):
+            
 
+            headers = {
+                "Authorization": "Bearer %s" % token,
+            }
 
+            return headers
+        payload = {
+            "brightness": brightness,
+        }
+        #debug methods
+        #print("Label Changebrightness: "+label)
+        #print("Brightness Level : "+ brightness)
+        self.response= requests.put('https://api.lifx.com/v1/lights/label:'+label+'/state',data=payload, headers=getHeaders(self))
+
+    #debug method for printing json from api
     def printAPI(self,r):
         print(r)
 
-
+#returns raw JSON data from light API
     def getJSON(self):
         data=json.loads(self.response.text)
-        #print(data)
+        print(data)
         return data
 
     #debug method
@@ -58,7 +74,7 @@ class LIFXController():
 
 
 
-        
+    #returns a list of light IDs
     def getLightIDs(self):
         data=LIFXController.getJSON(self)
         ids=[]
@@ -67,7 +83,7 @@ class LIFXController():
             ids.append(data[i]['id'])
 
         return ids
-
+    #returns a list of light labels
     def getLightLabels(self):
         data=LIFXController.getJSON(self)
         info=[]
@@ -76,7 +92,7 @@ class LIFXController():
             info.append(data[i]['label'])
         
         return info
-
+    #returns list of lights and basic info. mainly for debug
     def getLightsInfo(self):
         data=LIFXController.getJSON(self)
 
@@ -100,8 +116,14 @@ class LIFXController():
                     return True
                 else:
                     return False
+    #gets the current brightness of selected by label light
+    def getBrightness(self,label):
+            data=LIFXController.getJSON(self)
+            for i in range(len(data)):
+                if(data[i]['label']==label):    
+                    return data[i]['brightness']
 
-
+    #debug method for printing out basic light info
     def printLightInfoDebug(self):
         data=LIFXController.getJSON(self)
         for i in range(len(data)):
