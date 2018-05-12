@@ -3,3 +3,5 @@ Python utility to control LIFX Lights
 
 This is a basic controller that is still being updated with functionality for LIFX smart lights. I have also implemented a very basic GUI
 to use the functions of the controller. Very limited testing. 
+
+You'll need the appjar and requests modules for this to run. You'll also need to create an API token with LIFX Lights.
