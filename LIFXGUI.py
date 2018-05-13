@@ -1,9 +1,11 @@
 import LFXControl as LFX
 from appJar import gui
 
-
-app = gui("LFX Controller", "800x600")
+#disabled appjar icon to show custom icon
+app = gui("LFX Controller", "800x600",showIcon=False)
 app.setTransparency(90)
+#ICON CREDIT: Light by Numero Uno from the Noun Project
+app.setIcon("LIFXGUI.gif")
 
 app.addLabelEntry("Token:")
 # handles posting of changed parameters for lights

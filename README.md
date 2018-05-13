@@ -19,3 +19,7 @@ Coming soon:
 *proper brightness adjustment
 
 *room control
+
+Credits:
+
+*Light by Numero Uno from the Noun Project
