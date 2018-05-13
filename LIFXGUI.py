@@ -3,6 +3,7 @@ from appJar import gui
 
 
 app = gui("LFX Controller", "800x600")
+app.setTransparency(90)
 
 app.addLabelEntry("Token:")
 # handles posting of changed parameters for lights
