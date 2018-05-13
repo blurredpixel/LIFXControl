@@ -50,6 +50,7 @@ class LIFXController():
         #print("Brightness Level : "+ brightness)
         self.response = requests.put(
             'https://api.lifx.com/v1/lights/label:'+label+'/state', data=payload, headers=getHeaders(self))
+
     def changeColor(self, token, label, color):
         def getHeaders(self):
 
