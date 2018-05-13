@@ -10,11 +10,11 @@ Features:
 
 *On/Off Switch
 
+*Basic color selection
+
 *Brightness Slider(can only go min or max brightness for right now)
 
 Coming soon:
-
-*Basic color selection
 
 *proper brightness adjustment
 

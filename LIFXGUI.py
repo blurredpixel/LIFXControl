@@ -7,15 +7,25 @@ app = gui("LFX Controller", "800x600")
 app.addLabelEntry("Token:")
 # handles posting of changed parameters for lights
 
-
+#known bug: if you click on the x instead of the Exit button
+#and then edit another light, it will throw a duplicate widget
+#exception. destroying the subwindow allow it to re-create the
+#widget each time you click the edit_light button. This might 
+#impact performance? 
 def editLight(button):
     token = app.getEntry("Token:")
     light = LFX.LIFXController(token)
-
+    #calls method to toggle power
     light.togglePower(token, app.getListBox("labels")[
                       0], app.getRadioButton("power"))
+    #calls method to change brightness from controller class
     light.changeBrightness(token, app.getListBox(
         "labels")[0], app.getScale("brightness"))
+    #calls method to change color based on option box in subwindow
+    light.changeColor(token,app.getListBox("labels")[0],app.getOptionBox("Colors"))
+                      
+    
+
     # this was added to make sure a duplicate widget exception won't be thrown
     if(button == "Exit"):
         app.destroySubWindow("light_edit")
@@ -40,6 +50,10 @@ def debug(button):
         app.addScale("brightness")
         app.setScaleRange("brightness", 0.0, 1.0,
                           light.getBrightness(app.getListBox("labels")[0]))
+
+        app.addLabelOptionBox("Colors",["white","red","orange","yellow","cyan","green","blue","purple","pink"])
+        
+        #buttons for edit window
         app.addButtons(["Submit Changes", "Exit"], editLight)
         app.stopSubWindow()
         app.showSubWindow("light_edit")

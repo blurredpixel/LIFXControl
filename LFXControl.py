@@ -50,6 +50,22 @@ class LIFXController():
         #print("Brightness Level : "+ brightness)
         self.response = requests.put(
             'https://api.lifx.com/v1/lights/label:'+label+'/state', data=payload, headers=getHeaders(self))
+    def changeColor(self, token, label, color):
+        def getHeaders(self):
+
+            headers = {
+                "Authorization": "Bearer %s" % token,
+            }
+
+            return headers
+        payload = {
+            "color": color,
+        }
+        # debug methods
+        #print("Label Changebrightness: "+label)
+        #print("Brightness Level : "+ brightness)
+        self.response = requests.put(
+            'https://api.lifx.com/v1/lights/label:'+label+'/state', data=payload, headers=getHeaders(self))
 
     # debug method for printing json from api
     def printAPI(self, r):
