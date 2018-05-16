@@ -1,7 +1,7 @@
 
 import requests
 import json
-
+import threading
 
 class LIFXController():
 
@@ -145,3 +145,10 @@ class LIFXController():
             print("ID: "+data[i]['id'])
             print("Label: "+data[i]['label'])
             print("Power: "+data[i]['power'])
+
+
+class APIThread(threading.Thread):
+    #START OF THREADING METHODS
+    pass
+    
+
