@@ -49,11 +49,13 @@ def debug(button):
         app.addRadioButton("power", "off")
         # if the light is on set the only available option to off
         if(light.getLightPowerState(app.getListBox("labels")[0]) == True):
+            app.setRadioButton("power", "on", callFunction=False)
+        else:
             app.setRadioButton("power", "off", callFunction=False)
         # adds brightness select slider
         app.addScale("brightness")
         app.setScaleRange("brightness", 0.0, 1.0,
-                          light.getBrightness(app.getListBox("labels")[0]))
+                          float(light.getBrightness(app.getListBox("labels")[0]))) #testing brightness slider increments
 
         app.addLabelOptionBox("Colors", [
                               "white", "red", "orange", "yellow", "cyan", "green", "blue", "purple", "pink"])
